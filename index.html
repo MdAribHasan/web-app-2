@@ -3,118 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Earn Rewards with Monetag Ads</title>
+    <title>Monetag Ads Integration</title>
 
-    <!-- Monetag SDK -->
+    <!-- ✅ Updated Monetag SDK with your new Zone ID -->
     <script
       src="//libtl.com/sdk.js"
-      data-zone="9590225"
-      data-sdk="show_9590225"
+      data-zone="9592286"
+      data-sdk="show_9592286"
       defer
     ></script>
 
     <style>
-      :root {
-        --primary-color: #28a745;
-        --hover-color: #ff9800;
-        --bg-color: #1e1e1e;
-        --text-color: #f5f5f5;
-        --card-color: #2b2b2b;
-        --font-family: "Segoe UI", sans-serif;
-      }
-
       body {
-        margin: 0;
-        padding: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        font-family: var(--font-family);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
+        background: #121212;
+        color: white;
+        font-family: Arial, sans-serif;
         text-align: center;
+        padding-top: 100px;
       }
-
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-
-      .card {
-        background-color: var(--card-color);
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-        max-width: 400px;
-        width: 90%;
-        margin: 10px auto;
-      }
-
       button {
-        padding: 14px 24px;
-        background-color: var(--primary-color);
+        padding: 12px 20px;
+        background: green;
         border: none;
         color: white;
-        font-size: 1rem;
-        border-radius: 8px;
+        font-size: 16px;
+        border-radius: 6px;
         cursor: pointer;
         margin: 10px;
-        width: 100%;
-        transition: background-color 0.3s ease;
       }
-
       button:hover {
-        background-color: var(--hover-color);
-      }
-
-      @media screen and (max-width: 480px) {
-        h1 {
-          font-size: 1.8rem;
-        }
+        background: darkorange;
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <h3>Made By Ustad Arib</h3>
-      <h1>🎁 Earn Rewards</h1>
-      <p>Click below to earn by watching ads</p>
-      <button onclick="watchRewardedAd()">▶ Watch Rewarded Ad</button>
-      <button onclick="startInAppAds()">💡 Start In-App Ads</button>
-      <h2>📞 Contact Us</h2>
-      <p>If you you need more Telegram:</p>
-      <a
-        href="https://t.me/your_telegram_handle"
-        target="_blank"
-        style="
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #0088cc;
-          color: white;
-          padding: 12px 20px;
-          border-radius: 8px;
-          font-weight: bold;
-        "
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
-          alt="Telegram"
-          style="width: 24px; height: 24px; margin-right: 10px"
-        />
-        Contact here...
-      </a>
-    </div>
+    <h1>🎁 Earn by Watching Ads</h1>
+
+    <!-- ✅ Buttons -->
+    <button onclick="watchRewardedAd()">Watch Rewarded Ad</button>
+    <button onclick="startInAppAds()">Start In-App Interstitial Ads</button>
 
     <script>
+      // ✅ Function to show rewarded interstitial ad
       function watchRewardedAd() {
-        if (typeof show_9590225 === "function") {
-          show_9590225()
+        if (typeof show_9592286 === "function") {
+          show_9592286()
             .then(() => {
-              alert("✅ Thanks! You've earned your reward.");
+              alert("✅ You have seen an ad and earned your reward!");
             })
             .catch(() => {
               alert("⚠ Ad failed to show.");
@@ -124,16 +59,17 @@
         }
       }
 
+      // ✅ Function to show in-app interstitial ads
       function startInAppAds() {
-        if (typeof show_9590225 === "function") {
-          show_9590225({
+        if (typeof show_9592286 === "function") {
+          show_9592286({
             type: "inApp",
             inAppSettings: {
               frequency: 2,
-              capping: 0.1,
-              interval: 30,
-              timeout: 5,
-              everyPage: false,
+              capping: 0.1, // 6-minute window
+              interval: 30, // 30 seconds between ads
+              timeout: 5, // 5 second delay before first ad
+              everyPage: false, // Session saved between pages
             },
           });
           alert("✅ In-app interstitial ads started!");
