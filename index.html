@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monetag Ads Integration</title>
+    <title>Earn Rewards with Monetag Ads</title>
 
-    <!-- Monetag SDK with your zone ID -->
+    <!-- Monetag SDK -->
     <script
       src="//libtl.com/sdk.js"
       data-zone="9590225"
@@ -14,44 +14,107 @@
     ></script>
 
     <style>
-      body {
-        background: #121212;
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding-top: 100px;
+      :root {
+        --primary-color: #28a745;
+        --hover-color: #ff9800;
+        --bg-color: #1e1e1e;
+        --text-color: #f5f5f5;
+        --card-color: #2b2b2b;
+        --font-family: "Segoe UI", sans-serif;
       }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: var(--font-family);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background-color: var(--card-color);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        max-width: 400px;
+        width: 90%;
+        margin: 10px auto;
+      }
+
       button {
-        padding: 12px 20px;
-        background: green;
+        padding: 14px 24px;
+        background-color: var(--primary-color);
         border: none;
         color: white;
-        font-size: 16px;
-        border-radius: 6px;
+        font-size: 1rem;
+        border-radius: 8px;
         cursor: pointer;
         margin: 10px;
+        width: 100%;
+        transition: background-color 0.3s ease;
       }
+
       button:hover {
-        background: darkorange;
+        background-color: var(--hover-color);
+      }
+
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 1.8rem;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>🎁 Earn by Watching Ads</h1>
-
-    <button onclick="watchRewardedAd()">Watch Rewarded Ad</button>
-    <button onclick="startInAppAds()">Start In-App Interstitial Ads</button>
+    <div class="card">
+      <h3>Made By Ustad Arib</h3>
+      <h1>🎁 Earn Rewards</h1>
+      <p>Click below to earn by watching ads</p>
+      <button onclick="watchRewardedAd()">▶ Watch Rewarded Ad</button>
+      <button onclick="startInAppAds()">💡 Start In-App Ads</button>
+      <h2>📞 Contact Us</h2>
+      <p>If you you need more Telegram:</p>
+      <a
+        href="https://t.me/your_telegram_handle"
+        target="_blank"
+        style="
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #0088cc;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
+          font-weight: bold;
+        "
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+          alt="Telegram"
+          style="width: 24px; height: 24px; margin-right: 10px"
+        />
+        Contact here...
+      </a>
+    </div>
 
     <script>
-      // ✅ Function to show rewarded ad
       function watchRewardedAd() {
         if (typeof show_9590225 === "function") {
           show_9590225()
             .then(() => {
-              // ✅ User reward logic here
-              alert(
-                "✅ Thanks! You have watched an ad and earned your reward."
-              );
+              alert("✅ Thanks! You've earned your reward.");
             })
             .catch(() => {
               alert("⚠ Ad failed to show.");
@@ -61,7 +124,6 @@
         }
       }
 
-      // ✅ Function to show in-app interstitial ads
       function startInAppAds() {
         if (typeof show_9590225 === "function") {
           show_9590225({
