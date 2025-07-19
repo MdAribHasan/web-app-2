@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monetag Ads Integration</title>
+
+    <!-- Monetag SDK with your zone ID -->
+    <script
+      src="//libtl.com/sdk.js"
+      data-zone="9590225"
+      data-sdk="show_9590225"
+      defer
+    ></script>
+
+    <style>
+      body {
+        background: #121212;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 100px;
+      }
+      button {
+        padding: 12px 20px;
+        background: green;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+      }
+      button:hover {
+        background: darkorange;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎁 Earn by Watching Ads</h1>
+
+    <button onclick="watchRewardedAd()">Watch Rewarded Ad</button>
+    <button onclick="startInAppAds()">Start In-App Interstitial Ads</button>
+
+    <script>
+      // ✅ Function to show rewarded ad
+      function watchRewardedAd() {
+        if (typeof show_9590225 === "function") {
+          show_9590225()
+            .then(() => {
+              // ✅ User reward logic here
+              alert(
+                "✅ Thanks! You have watched an ad and earned your reward."
+              );
+            })
+            .catch(() => {
+              alert("⚠ Ad failed to show.");
+            });
+        } else {
+          alert("❌ SDK not loaded properly.");
+        }
+      }
+
+      // ✅ Function to show in-app interstitial ads
+      function startInAppAds() {
+        if (typeof show_9590225 === "function") {
+          show_9590225({
+            type: "inApp",
+            inAppSettings: {
+              frequency: 2,
+              capping: 0.1,
+              interval: 30,
+              timeout: 5,
+              everyPage: false,
+            },
+          });
+          alert("✅ In-app interstitial ads started!");
+        } else {
+          alert("❌ SDK not loaded properly.");
+        }
+      }
+    </script>
+  </body>
+</html>
